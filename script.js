@@ -1,18 +1,20 @@
-// Code goes here
+var toDoList = {
 
-// made a change
-var me = {
-
-  toDo: ["yo", "hey", "sup", "suh"],
+  toDo: [],
   displayToDo: function(){
     
     console.log(this.toDo);
     
   },
   
-  addToDo: function(position, value){
+  addToDo: function(toDoText){
     
-    this.toDo.splice(position, 0, value);
+    this.toDo.push({
+      
+      toDoText: toDoText,
+      completed: false
+      
+    });
     this.displayToDo();
 
   },
@@ -26,11 +28,10 @@ var me = {
   
   deleteToDo: function(position){
     
-    this.toDo.splice(position, 0);
+    this.toDo.splice(position, 1);
     this.displayToDo();
     
   }
 
-}
+};
 
-toDo;
