@@ -4,10 +4,18 @@ var toDoList = {
     
     displayToDo: function(){
         
-        console.log("My ToDos: ");
+        if (this.toDo.length === 0){
+            
+            console.log("Your to-do list is empty!");
+            
+        } else {   
         
-        for (var i = 0; i < this.toDo.length; i++){
-            console.log(this.toDo[i].toDoText);
+            console.log("My ToDos: ");
+        
+            for (var i = 0; i < this.toDo.length; i++){
+                console.log(this.toDo[i].toDoText);
+            }
+            
         }
     
     },
