@@ -3,31 +3,31 @@
 // made a change
 var me = {
 
-  var toDo: ["yo", "hey", "sup", "suh"],
+  toDo: ["yo", "hey", "sup", "suh"],
   displayToDo: function(){
     
-    return toDo;
+    console.log(this.toDo);
     
   },
   
   addToDo: function(position, value){
     
-    toDo.splice(position, 0, value);
-    displayToDo();
-    
+    this.toDo.splice(position, 0, value);
+    this.displayToDo();
+
   },
   
   changeToDo: function(position, value){
     
-    toDo[position] = value;
-    displayToDo();
+    this.toDo[position] = value;
+    this.displayToDo();
     
   },
   
   deleteToDo: function(position){
     
-    toDo.splice(position, 1);
-    displayToDo();
+    this.toDo.splice(position, 0);
+    this.displayToDo();
     
   }
 
