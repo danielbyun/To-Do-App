@@ -115,24 +115,34 @@ var handlers = {
     
     addToDo: function(){
         
+        var addToDoTextInput = document.getElementById("addToDoTextInput");
+        
+        toDoList.addToDo(addToDoTextInput.value);
         
     },
     
     changeToDo: function(){
         
+        var changeToDoPositionInput = document.getElementById("changeToDoPositionInput");
+        var changeToDoTextInput = document.getElementById("changeToDoTextInput");
         
+        toDoList.changeToDo(changeToDoPositionInput.valueAsNumber, changeToDoTextInput.value);
         
     },
     
     deleteToDo: function(){
         
+        var deleteToDoPositionInput = document.getElementById("deleteToDoPositionInput");
         
+        toDoList.deleteToDo(deleteToDoPositionInput.valueAsNumber);
         
     },
     
     toggleCompleted: function(){
         
+        var toggleCompletedPositionInput = document.getElementById("toggleCompletedPositionInput");
         
+        toDoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
         
     },
     
