@@ -2,34 +2,34 @@ var toDoList = {
     
     toDo: [],
     
-    displayToDo: function(){
-        
-        if (this.toDo.length === 0){
-            
-            console.log("Your to-do list is empty!");
-            
-        } else {   
-        
-            console.log("My ToDos: ");
-        
-            for (var i = 0; i < this.toDo.length; i++){
-                
-                if (this.toDo[i].completed === true){
-                
-                    console.log('(x)', this.toDo[i].toDoText);
-               
-                } else {        
-                 
-                    console.log('( )', this.toDo[i].toDoText);
-                    
-                }
-                
-            }
-            
-        }
-    
-    },
-    
+//    displayToDo: function(){
+//        
+//        if (this.toDo.length === 0){
+//            
+//            console.log("Your to-do list is empty!");
+//            
+//        } else {   
+//        
+//            console.log("My ToDos: ");
+//        
+//            for (var i = 0; i < this.toDo.length; i++){
+//                
+//                if (this.toDo[i].completed === true){
+//                
+//                    console.log('(x)', this.toDo[i].toDoText);
+//               
+//                } else {        
+//                 
+//                    console.log('( )', this.toDo[i].toDoText);
+//                    
+//                }
+//                
+//            }
+//            
+//        }
+//    
+//    },
+//    
     addToDo: function(toDoText){
         
         this.toDo.push({
@@ -39,21 +39,21 @@ var toDoList = {
       
         });
     
-        this.displayToDo();
+        view.displayToDo();
 
     },
   
     changeToDo: function(position, toDoText){
     
         this.toDo[position].toDoText = toDoText;
-        this.displayToDo();
+        view.displayToDo();
     
     },
   
     deleteToDo: function(position){
     
         this.toDo.splice(position, 1);
-        this.displayToDo();
+        view.displayToDo();
     
     },
   
@@ -64,7 +64,7 @@ var toDoList = {
   	
         // we grab what it is, then we flip it with the bang operator (!)
         todo.completed = !todo.completed;
-        this.displayToDo();
+        view.displayToDo();
     
     },
     
@@ -99,7 +99,7 @@ var toDoList = {
             
         }
         
-        this.displayToDo();
+        view.displayToDo();
         
     }
 
@@ -158,12 +158,25 @@ var view = {
     
     displayToDo: function(){
         
-        var toDosUI = document.querySelector('ul');
+        var toDosUI = document.querySelector("ul");
         toDosUI.inerHTML = "";
         
         for (var i = 0; i < toDoList.toDo.length; i++){
             
-            var toDoLi = document.createElement('li');
+            var toDoLi = document.createElement("li");
+            var toDo = toDoList.toDo[i];
+            var toDoTextWithCompletion = "";
+            
+            if (toDo.completed === true){
+                
+                toDoTextWithCompletion = "(x) " + toDo.toDoText;
+                
+            } else {
+                
+                toDoTextWithCompletion = "( ) " + toDo.toDoText;
+                
+            }
+            
             toDoLi.textContent = toDoList.toDo[i].toDoText;
             toDosUI.appendChild(toDoLi);
             
