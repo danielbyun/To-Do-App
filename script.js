@@ -154,3 +154,21 @@ var handlers = {
         
 };
 
+var view = {
+    
+    displayToDo: function(){
+        
+        var toDosUI = document.querySelector('ul');
+        toDosUI.inerHTML = "";
+        
+        for (var i = 0; i < toDoList.toDo.length; i++){
+            
+            var toDoLi = document.createElement('li');
+            toDoLi.textContent = toDoList.toDo[i].toDoText;
+            toDosUI.appendChild(toDoLi);
+            
+        }
+        
+    }
+    
+};
