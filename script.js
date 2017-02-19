@@ -105,3 +105,42 @@ var toDoList = {
 
 };
 
+var handlers = {
+    
+    displayToDo: function(){
+        
+        toDoList.displayToDo();
+        
+    },
+    
+    addToDo: function(){
+        
+        
+    },
+    
+    changeToDo: function(){
+        
+        
+        
+    },
+    
+    deleteToDo: function(){
+        
+        
+        
+    },
+    
+    toggleCompleted: function(){
+        
+        
+        
+    },
+    
+    toggleAll: function(){
+        
+        toDoList.toggleAll();
+        
+    }
+        
+};
+
