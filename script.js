@@ -79,6 +79,7 @@ var toDoList = {
             
         }
         
+        // case 1: if everything is true, make everything false
         if (completedToDos === totalToDos){
             
             for (var i = 0; i < totalToDos; i++){
@@ -87,7 +88,18 @@ var toDoList = {
                 
             }
             
+        // case 2: otherwise, make everything true
+        } else {
+            
+            for (var i = 0; i < totalToDos; i++){
+                
+                this.toDo[i].completed = true;
+                
+            }
+            
         }
+        
+        this.displayToDo();
         
     }
 
