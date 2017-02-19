@@ -13,7 +13,17 @@ var toDoList = {
             console.log("My ToDos: ");
         
             for (var i = 0; i < this.toDo.length; i++){
-                console.log(this.toDo[i].toDoText);
+                
+                if (this.toDo[i].completed === true){
+                
+                    console.log('(x)', this.toDo[i].toDoText);
+               
+                } else {        
+                 
+                    console.log('( )', this.toDo[i].toDoText);
+                    
+                }
+                
             }
             
         }
@@ -56,6 +66,29 @@ var toDoList = {
         todo.completed = !todo.completed;
         this.displayToDo();
     
+    },
+    
+    toggleAll: function(){
+        
+        var totalToDos = this.toDo.length;
+        var completedToDos = 0;
+        
+        for (var i = 0; i < totalToDos; i++){
+            
+            completedToDos++;
+            
+        }
+        
+        if (completedToDos === totalToDos){
+            
+            for (var i = 0; i < totalToDos; i++){
+            
+                this.toDo[i].completed = false;
+                
+            }
+            
+        }
+        
     }
 
 };
