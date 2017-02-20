@@ -178,6 +178,7 @@ var view = {
             };
             
             toDoLi.textContent = toDoTextWithCompletion;
+            toDoLi.appendChild(this.createDeleteButton());
             toDosUl.appendChild(toDoLi);
             
         }
