@@ -177,6 +177,7 @@ var view = {
                 toDoTextWithCompletion = "( ) " + toDo.toDoText;                
             };
             
+            toDoLi.id = i;
             toDoLi.textContent = toDoTextWithCompletion;
             toDoLi.appendChild(this.createDeleteButton());
             toDosUl.appendChild(toDoLi);
@@ -196,3 +197,12 @@ var view = {
     }
     
 };
+
+var toDosUl = document.querySelector("ul");
+
+toDosUl.addEventListener("click", function(event){
+    
+    console.log(event.target.parentNode.id);
+    
+});
+
