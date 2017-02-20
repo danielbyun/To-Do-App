@@ -8,11 +8,12 @@
 
 * {
     box-sizing: border-box;
+    text-align: center;
 }
 
 body {
     font-family: helvetica, arial, sans-serif;
-    margin: 10em;
+    margin: 0 10em 5em 10em;
 }
 
 h1, h2 {
@@ -40,7 +41,8 @@ form {
 }
 
 input {
-    display: inline-block;
+    display: block;
+    margin: 0 auto;
     margin-bottom: 10px;
     padding: 5px;
     margin-top: 1em;
