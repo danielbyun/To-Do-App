@@ -40,10 +40,11 @@ form {
 }
 
 input {
-    display: block;
+    display: inline-block;
     margin-bottom: 10px;
     padding: 5px;
-    width: 100%;
+    margin-top: 1em;
+    width: 10em;
     border: 1px solid lightgrey;
     border-radius: 3px;
     font-size: 16px;

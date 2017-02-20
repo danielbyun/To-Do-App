@@ -118,6 +118,7 @@ var handlers = {
         var addToDoTextInput = document.getElementById("addToDoTextInput");
         
         toDoList.addToDo(addToDoTextInput.value);
+        addToDoTextInput.value = "";
         
     },
     
@@ -127,6 +128,8 @@ var handlers = {
         var changeToDoTextInput = document.getElementById("changeToDoTextInput");
         
         toDoList.changeToDo(changeToDoPositionInput.valueAsNumber, changeToDoTextInput.value);
+        changeToDoPositionInput.valueAsNumber = "";
+        changeToDoTextInput.value = "";
         
     },
     
@@ -135,6 +138,7 @@ var handlers = {
         var deleteToDoPositionInput = document.getElementById("deleteToDoPositionInput");
         
         toDoList.deleteToDo(deleteToDoPositionInput.valueAsNumber);
+        deleteToDoPositionInput.valueAsNumber = "";
         
     },
     
@@ -143,7 +147,7 @@ var handlers = {
         var toggleCompletedPositionInput = document.getElementById("toggleCompletedPositionInput");
         
         toDoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
-        
+        toggleCompletedPositionInput.valueAsNumber = "";        
     },
     
     toggleAll: function(){
@@ -158,8 +162,8 @@ var view = {
     
     displayToDo: function(){
         
-        var toDosUI = document.querySelector("ul");
-        toDosUI.inerHTML = "";
+        var toDosUl = document.querySelector("ul");
+        toDosUl.innerHTML = "";
         
         for (var i = 0; i < toDoList.toDo.length; i++){
             
@@ -167,20 +171,26 @@ var view = {
             var toDo = toDoList.toDo[i];
             var toDoTextWithCompletion = "";
             
-            if (toDo.completed === true){
-                
-                toDoTextWithCompletion = "(x) " + toDo.toDoText;
-                
-            } else {
-                
-                toDoTextWithCompletion = "( ) " + toDo.toDoText;
-                
-            }
+            if (toDo.completed === true){                
+                toDoTextWithCompletion = "(x) " + toDo.toDoText;                
+            } else {                
+                toDoTextWithCompletion = "( ) " + toDo.toDoText;                
+            };
             
-            toDoLi.textContent = toDoList.toDo[i].toDoText;
-            toDosUI.appendChild(toDoLi);
+            toDoLi.textContent = toDoTextWithCompletion;
+            toDosUl.appendChild(toDoLi);
             
         }
+        
+    },
+    
+    createDeleteButton: function(){
+        
+        var deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.className = "deleteButton";        
+        
+        return deleteButton;
         
     }
     
