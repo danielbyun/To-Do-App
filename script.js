@@ -73,36 +73,41 @@ var toDoList = {
         var totalToDos = this.toDo.length;
         var completedToDos = 0;
         
-        for (var i = 0; i < totalToDos; i++){
-            
-            completedToDos++;
-            
-        }
+//        Get number of completed todos.
+//        for (var i = 0; i < totalToDos; i++){
+//            completedToDos++;
+//        }
         
-        // case 1: if everything is true, make everything false
+        this.toDo.forEach(function(toDo){
+            if (toDo.completed === true){
+                completedToDos++;
+            }                        
+        });
+        
+//        case 1: if everything is true, make everything false
+//        if (completedToDos === totalToDos){    
+//            for (var i = 0; i < totalToDos; i++){
+//                this.toDo[i].completed = false;
+//            }
         if (completedToDos === totalToDos){
+            this.toDo.forEach(function(toDo){
+                if (toDo.completed === true){
+                    toDo.completed = false;                                
+                }
+            });       
             
-            for (var i = 0; i < totalToDos; i++){
-            
-                this.toDo[i].completed = false;
-                
-            }
-            
-        // case 2: otherwise, make everything true
+//        case 2: otherwise, make everything true
+//        } else {
+//            for (var i = 0; i < totalToDos; i++){
+//                this.toDo[i].completed = true;
+//            }
+//        }
         } else {
-            
-            for (var i = 0; i < totalToDos; i++){
-                
-                this.toDo[i].completed = true;
-                
-            }
-            
+            this.toDo.forEach(function(toDo){
+                toDo.completed = true; 
+            });
         }
-        
-        view.displayToDo();
-        
     }
-
 };
 
 var handlers = {
@@ -133,12 +138,10 @@ var handlers = {
         
     },
     
-    deleteToDo: function(){
-        
-        var deleteToDoPositionInput = document.getElementById("deleteToDoPositionInput");
-        
-        toDoList.deleteToDo(deleteToDoPositionInput.valueAsNumber);
-        deleteToDoPositionInput.valueAsNumber = "";
+    deleteToDo: function(position){
+                
+        toDoList.deleteToDo(position);
+        view.displayToDo();
         
     },
     
@@ -147,12 +150,15 @@ var handlers = {
         var toggleCompletedPositionInput = document.getElementById("toggleCompletedPositionInput");
         
         toDoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
-        toggleCompletedPositionInput.valueAsNumber = "";        
+        toggleCompletedPositionInput.valueAsNumber = "";      
+        view.displayToDo();
+        
     },
     
     toggleAll: function(){
-        
+                
         toDoList.toggleAll();
+        view.displayToDo();
         
     }
         
@@ -194,15 +200,27 @@ var view = {
         
         return deleteButton;
         
+    },
+    
+    setUpEventListeners: function(){
+        
+        var toDosUl = document.querySelector("ul");
+        
+        toDosUl.addEventListener("click", function(event){
+            // Get the element that was clicked
+            var elementClicked = event.target;
+            
+            // Check if elementClicked is a delete button.
+            if (elementClicked.className === "deleteButton"){
+                // Run handlers.deleteToDo(position);    
+                handlers.deleteToDo(parseInt(elementClicked.parentNode.id));
+            }
+            
+        });
+                
     }
     
 };
 
-var toDosUl = document.querySelector("ul");
-
-toDosUl.addEventListener("click", function(event){
-    
-    console.log(event.target.parentNode.id);
-    
-});
+view.setUpEventListeners();
 
