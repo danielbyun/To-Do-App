@@ -12,10 +12,10 @@
 
 body {
     font-family: helvetica, arial, sans-serif;
-    margin: 25px;
+    margin: 10em;
 }
 
-h1 {
+h1, h2 {
     font-weight: bold;
     color: pink;
     text-transform: uppercase;
