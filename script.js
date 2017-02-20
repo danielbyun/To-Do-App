@@ -73,50 +73,59 @@ var toDoList = {
         var totalToDos = this.toDo.length;
         var completedToDos = 0;
         
-//        Get number of completed todos.
-//        for (var i = 0; i < totalToDos; i++){
-//            completedToDos++;
-//        }
-        
-        this.toDo.forEach(function(toDo){
-            if (toDo.completed === true){
+        this.toDo.forEach(function(todo){
+            if (todo.completed === true){
                 completedToDos++;
             }                        
         });
         
-//        case 1: if everything is true, make everything false
+        this.toDo.forEach(function(todo){
+            // case 1: if everything is true, make everything false
+            if (completedToDos === totalToDos){
+                todo.completed = false;                                
+            } else {
+            // case 2: otherwise, make everything true
+                todo.completed = true;
+            }
+        });
+    }
+};
+
+//        Get number of completed todos.
+//        for (var i = 0; i < totalToDos; i++){
+//            completedToDos++;
+//        }
+//        // case 1: if everything is true, make everything false
+//        // With for loop
 //        if (completedToDos === totalToDos){    
 //            for (var i = 0; i < totalToDos; i++){
 //                this.toDo[i].completed = false;
 //            }
-        if (completedToDos === totalToDos){
-            this.toDo.forEach(function(toDo){
-                if (toDo.completed === true){
-                    toDo.completed = false;                                
-                }
-            });       
-            
-//        case 2: otherwise, make everything true
-//        } else {
-//            for (var i = 0; i < totalToDos; i++){
-//                this.toDo[i].completed = true;
+//            
+//            // With forEach
+//            if (completedToDos === totalToDos){
+//                this.toDo.forEach(function(toDo){
+//                    if (toDo.completed === true){
+//                        toDo.completed = false;                 
+//                        
+//                    }
+//                });       
+//            
+//            // case 2: otherwise, make everything true
+//            // with for loop
+//            } else {
+//                for (var i = 0; i < totalToDos; i++){
+//                    this.toDo[i].completed = true;
+//                }
 //            }
+//        // with forEach
+//        } else {
+//            this.toDo.forEach(function(toDo){
+//                toDo.completed = true; 
+//            });
 //        }
-        } else {
-            this.toDo.forEach(function(toDo){
-                toDo.completed = true; 
-            });
-        }
-    }
-};
 
 var handlers = {
-    
-    displayToDo: function(){
-        
-        toDoList.displayToDo();
-        
-    },
     
     addToDo: function(){
         
@@ -124,6 +133,7 @@ var handlers = {
         
         toDoList.addToDo(addToDoTextInput.value);
         addToDoTextInput.value = "";
+        view.displayToDo();
         
     },
     
@@ -171,26 +181,44 @@ var view = {
         var toDosUl = document.querySelector("ul");
         toDosUl.innerHTML = "";
         
-        for (var i = 0; i < toDoList.toDo.length; i++){
-            
-            var toDoLi = document.createElement("li");
-            var toDo = toDoList.toDo[i];
-            var toDoTextWithCompletion = "";
-            
-            if (toDo.completed === true){                
-                toDoTextWithCompletion = "(x) " + toDo.toDoText;                
-            } else {                
-                toDoTextWithCompletion = "( ) " + toDo.toDoText;                
-            };
-            
-            toDoLi.id = i;
-            toDoLi.textContent = toDoTextWithCompletion;
-            toDoLi.appendChild(this.createDeleteButton());
-            toDosUl.appendChild(toDoLi);
-            
+//        for (var i = 0; i < toDoList.toDo.length; i++){
+//            
+//            var toDoLi = document.createElement("li");
+//            var toDo = toDoList.toDo[i];
+//            var toDoTextWithCompletion = "";
+//            
+//            if (toDo.completed === true){                
+//                toDoTextWithCompletion = "(x) " + toDo.toDoText;                
+//            } else {                
+//                toDoTextWithCompletion = "( ) " + toDo.toDoText;                
+//            };
+//            
+//            toDoLi.id = i;
+//            toDoLi.textContent = toDoTextWithCompletion;
+//            toDoLi.appendChild(this.createDeleteButton());
+//            toDosUl.appendChild(toDoLi);
+//            
+//        }
+                
+        toDoList.toDo.forEach(function(todo, position){
+                                 
+        var toDoLi = document.createElement("li");
+        var toDoTextWithCompletion = "";
+        
+        if (todo.completed === true){
+            toDoTextWithCompletion = "(x)" + todo.toDoText;
+        } else {
+            toDoTextWithCompletion = "( )" + todo.toDoText;
         }
         
-    },
+        toDoLi.id = position;
+        toDoLi.textContent = toDoTextWithCompletion;
+        toDoLi.appendChild(this.createDeleteButton());
+        toDosUl.appendChild(toDoLi);
+        
+    }, this);
+    
+},
     
     createDeleteButton: function(){
         
